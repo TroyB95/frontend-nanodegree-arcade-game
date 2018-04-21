@@ -32,6 +32,7 @@ var Enemy = function(x, y) {
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
 
+    // The x and y posistion variables where the enemy will be located
     this.x = x;
     this.y = y;
 };
@@ -42,7 +43,9 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-if (difficulty === 'easy') {
+
+    // -- Set the speeds depending on what difficulty is selected --
+if(difficulty === 'easy') {
     // Check for enemy going off the screen to reset
     if (this.x < 505 && level < 5){
     	this.x += (100 * dt);
@@ -53,9 +56,41 @@ if (difficulty === 'easy') {
     } else if (this.x < 505 && level < 20){
     	this.x += (175 * dt); 
     } else if (this.x < 505 && level < 25){
-    	this.x += (150 * dt); 
+    	this.x += (200 * dt); 
     } else if (this.x < 505 && level > 25){
+    	this.x += (225 * dt); 
+    } else {
+    	this.x = (-90);
+    }
+} else if (difficulty === 'medium') {
+	if (this.x < 505 && level < 5){
+    	this.x += (150 * dt);
+    } else if (this.x < 505 && level < 10){
     	this.x += (175 * dt); 
+    } else if (this.x < 505 && level < 15){
+    	this.x += (200 * dt); 
+    } else if (this.x < 505 && level < 20){
+    	this.x += (225 * dt); 
+    } else if (this.x < 505 && level < 25){
+    	this.x += (250 * dt); 
+    } else if (this.x < 505 && level > 25){
+    	this.x += (275 * dt); 
+    } else {
+    	this.x = (-90);
+    }
+} else if (difficulty === 'hard'){
+	if (this.x < 505 && level < 5){
+    	this.x += (200 * dt);
+    } else if (this.x < 505 && level < 10){
+    	this.x += (225 * dt); 
+    } else if (this.x < 505 && level < 15){
+    	this.x += (250 * dt); 
+    } else if (this.x < 505 && level < 20){
+    	this.x += (275 * dt); 
+    } else if (this.x < 505 && level < 25){
+    	this.x += (300 * dt); 
+    } else if (this.x < 505 && level > 25){
+    	this.x += (325 * dt); 
     } else {
     	this.x = (-90);
     }
@@ -80,7 +115,7 @@ Enemy.prototype.render = function() {
 let Player = function(){
 	this.sprite = "images/char-boy.png";
 	this.x = 200;
-	this.y = 300;
+	this.y = 400;
 
 }
 
@@ -108,7 +143,7 @@ Player.prototype.handleInput = function(direction) {
     if(direction == 'up' && this.y > 3) {
         this.y -= 85;
     }
-    if(direction == 'down' && this.y < 400) {
+    if(direction == 'down' && this.y < 399) {
         this.y += 85;
     }
 };
