@@ -2,7 +2,7 @@ let score = 0;
 let level = 0;
 const scoreCount = document.querySelector('.score');
 const levelCount = document.querySelector('.level')
-let difficulty = prompt('Please Select a Difficulty! \nEasy, Medium or Hard. \nType it in the box below!').toLowerCase();
+let difficulty = prompt('Please Select a Difficulty! (Default is Easy) \nEasy, Medium or Hard. \nPlease type it in the box below! ').toLowerCase();
 if(difficulty !== 'easy' && difficulty !== 'medium' && difficulty !== 'hard'){
 	difficulty = 'easy';
 }
@@ -21,6 +21,7 @@ var Enemy = function(x, y) {
     this.y = y;
 };
 
+ 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
@@ -41,10 +42,10 @@ if(difficulty === 'easy') {
     	this.x += (175 * dt); 
     } else if (this.x < 505 && level < 25){
     	this.x += (200 * dt); 
-    } else if (this.x < 505 && level > 25){
+    } else if (this.x < 505 && level >= 25){
     	this.x += (225 * dt); 
     } else {
-    	this.x = (-90);
+    	this.x = (-(Math.random() * 350));
     }
 } else if (difficulty === 'medium') {
 	if (this.x < 505 && level < 5){
@@ -57,14 +58,14 @@ if(difficulty === 'easy') {
     	this.x += (225 * dt); 
     } else if (this.x < 505 && level < 25){
     	this.x += (250 * dt); 
-    } else if (this.x < 505 && level > 25){
+    } else if (this.x < 505 && level >= 25){
     	this.x += (275 * dt); 
     } else {
-    	this.x = (-90);
+    	this.x = (-(Math.random() * 350));
     }
 } else if (difficulty === 'hard'){
 	if (this.x < 505 && level < 5){
-    	this.x += (200 * dt);
+    	this.x += (325 * dt);
     } else if (this.x < 505 && level < 10){
     	this.x += (225 * dt); 
     } else if (this.x < 505 && level < 15){
@@ -73,10 +74,10 @@ if(difficulty === 'easy') {
     	this.x += (275 * dt); 
     } else if (this.x < 505 && level < 25){
     	this.x += (300 * dt); 
-    } else if (this.x < 505 && level > 25){
+    } else if (this.x < 505 && level >= 25){
     	this.x += (325 * dt); 
     } else {
-    	this.x = (-90);
+    	this.x = (-(Math.random() * 500));
     }
 }
     
@@ -140,6 +141,7 @@ Player.prototype.reset = function() {
 	player.x = 200;
 	player.y = 300;
 }
+
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
