@@ -2,26 +2,10 @@ let score = 0;
 let level = 0;
 const scoreCount = document.querySelector('.score');
 const levelCount = document.querySelector('.level')
-let difficulty = '';
-
-const easyBtn = document.querySelector('.easy');
-const medium = document.querySelector('.medium');
-const hard = document.querySelector('.hard');
-
-
-window.onload=function(){
-	alert('Please Select a Difficulty');
- 	document.querySelector('.easy').addEventListener('click', function(){
+let difficulty = prompt('Please Select a Difficulty! \nEasy, Medium or Hard. \nType it in the box below!').toLowerCase();
+if(difficulty !== 'easy' && difficulty !== 'medium' && difficulty !== 'hard'){
 	difficulty = 'easy';
-})
- 	document.querySelector('.medium').addEventListener('click', function(){
-	difficulty = 'medium';
-})
- 	document.querySelector('.hard').addEventListener('click', function(){
-	difficulty = 'hard';
-})
 }
-
 
 // Enemies our player must avoid
 var Enemy = function(x, y) {
@@ -98,8 +82,12 @@ if(difficulty === 'easy') {
     
 
     // Check for enemy / player collision
-    if (this.x < player.x + 45 && this.x + 65 > player.x && this.y < player.y + 60 && this.y + 40 > player.y){
+    if (this.x < player.x + 25 && this.x + 65 > player.x && this.y < player.y + 60 && this.y + 40 > player.y){
     	player.reset();
+    	score = 0;
+    	scoreCount.innerHTML = score;
+    	level = 0;
+    	levelCount.innerHTML = level;
     };
 
 };
@@ -156,15 +144,30 @@ Player.prototype.reset = function() {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
+if(difficulty === 'easy') {
+const enemy1 = new Enemy(-100, 60);
+const enemy2 = new Enemy(-210, 140);
+const enemy3 = new Enemy(-375, 230);
+var allEnemies = [enemy1, enemy2, enemy3]
+} else if (difficulty === 'medium'){
+const enemy1 = new Enemy(-100, 60);
+const enemy2 = new Enemy(-210, 140);
+const enemy3 = new Enemy(-375, 230);
+const enemy4 = new Enemy(-400, 60);
+const enemy5 = new Enemy(-550, 140);
+var allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5]
+} else if (difficulty === 'hard'){
 const enemy1 = new Enemy(-100, 60);
 const enemy2 = new Enemy(-210, 140);
 const enemy3 = new Enemy(-375, 230);
 const enemy4 = new Enemy(-400, 60);
 const enemy5 = new Enemy(-550, 140);
 const enemy6 = new Enemy(-770, 230);
+var allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5, enemy6];
+}
 
 // Place all enemy objects in an array called allEnemies
-var allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5, enemy6];
+// var allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5, enemy6];
 // Place the player object in a variable called player
 var player = new Player();
 
