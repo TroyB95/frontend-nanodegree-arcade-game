@@ -4,17 +4,29 @@ body {
     background-position:50% 10%;
     background-size: 100% 100%;
     background-repeat: no-repeat;
-    margin: 0;
-    padding: 0;
     color: white;
 }
 
 h1 {
-	margin: 0;
+	margin-bottom: 0;
+	margin-top: 0;
 }
+
+
 
 .board {
 	display: flex;
-	flex-direction: column;
-	
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	background-color: rgba(0, 0, 150, 0.6);
 }
+
+.replay-btn {
+	cursor: pointer;
+}
+
+.replay-btn:hover {
+	color: red;
+}
+
